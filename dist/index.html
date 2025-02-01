@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hisham's Todo List</title>
+    <meta name="author" content="Hisham Alahmadi">
+  <script defer src="./bundle.js"></script></head>
+  <body>
+    <div id="app">
+      <!-- Header -->
+      <header class="app-header">
+        <div class="branding">
+          <h1>Hisham's Todo List</h1>
+          <div class="social-links">
+            <a href="https://twitter.com/ytzz" target="_blank">
+              <i class="fab fa-x-twitter"></i>
+            </a>
+            <a href="https://github.com/Gd2r" target="_blank">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+      </header>
+
+      <!-- Projects Sidebar -->
+      <aside id="projects-sidebar">
+        <h2>Projects</h2>
+        <button id="new-project-btn">
+          <i class="fas fa-plus"></i> New Project
+        </button>
+      </aside>
+
+      <!-- Main Content -->
+      <main>
+        <!-- Todo Form -->
+        <div class="add-task-section">
+          <form id="todo-form">
+            <div class="form-row main-inputs">
+              <input type="text" name="title" id="todo-title" placeholder="What needs to be done?" required>
+              <input type="datetime-local" name="dueDate" id="todo-due-date" required>
+              <select name="priority" id="todo-priority" required>
+                <option value="" disabled selected>Priority</option>
+                <option value="low">Low Priority</option>
+                <option value="medium">Medium Priority</option>
+                <option value="high">High Priority</option>
+              </select>
+              <button type="submit">
+                <i class="fas fa-plus"></i> Add Task
+              </button>
+            </div>
+            <div class="form-row">
+              <textarea name="description" id="todo-description" placeholder="Add a description..."></textarea>
+            </div>
+          </form>
+        </div>
+
+        <!-- Tasks Container -->
+        <div class="tasks-container">
+          <div id="main-content"></div>
+        </div>
+      </main>
+
+      <!-- Footer -->
+      <footer class="app-footer">
+        <div class="footer-content">
+          <p>Created by Hisham Alahmadi</p>
+          <div class="footer-divider">•</div>
+          <div class="footer-social">
+            <a href="https://twitter.com/ytzz" target="_blank">
+              <i class="fab fa-x-twitter"></i>
+              <span>@ytzz</span>
+            </a>
+            <a href="https://github.com/Gd2r" target="_blank">
+              <i class="fab fa-github"></i>
+              <span>@Gd2r</span>
+            </a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

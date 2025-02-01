@@ -1,0 +1,507 @@
+:root {
+  /* Discord-inspired colors */
+  --discord-dark: #36393f;
+  --discord-darker: #2f3136;
+  --discord-darkest: #202225;
+  --discord-light: #dcddde;
+  --discord-blue: #5865f2;
+  --discord-green: #3ba55c;
+  --discord-red: #ed4245;
+  --discord-yellow: #faa81a;
+  --discord-channel: #8e9297;
+  --discord-hover: #42464D;
+  --discord-border: #42464D;
+
+  /* Theme colors */
+  --primary-color: var(--discord-blue);
+  --secondary-color: var(--discord-yellow);
+  --danger-color: var(--discord-red);
+  --success-color: var(--discord-green);
+  --text-color: var(--discord-light);
+  --bg-color: var(--discord-darker);
+  --card-bg: var(--discord-dark);
+  --border-color: var(--discord-border);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+#app {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
+}
+
+/* Sidebar Styles */
+#projects-sidebar {
+  background-color: var(--discord-darkest);
+  padding: 20px;
+  border-right: 1px solid var(--border-color);
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  grid-row: 2;
+  position: static;
+  width: auto;
+}
+
+.project {
+  padding: 12px 15px;
+  margin-bottom: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  color: var(--discord-channel);
+}
+
+.project:hover {
+  background-color: var(--discord-hover);
+  color: var(--text-color);
+}
+
+.project.active {
+  background-color: var(--discord-hover);
+  color: var(--text-color);
+}
+
+.project-name {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+}
+
+.project-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+}
+
+.project .todo-count {
+  background-color: var(--discord-hover);
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-size: 0.8em;
+}
+
+/* Main Content Styles */
+main {
+  padding: 30px;
+  grid-row: 2;
+}
+
+#new-project-btn {
+  background-color: var(--discord-green);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  margin-bottom: 20px;
+  transition: background-color 0.2s;
+}
+
+#new-project-btn:hover {
+  background-color: #2d7d44;
+}
+
+/* Todo Card Styles */
+.todo-card {
+  background-color: var(--discord-dark);
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-left: 4px solid var(--primary-color);
+  transition: transform 0.2s ease;
+}
+
+.todo-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.priority-high { border-left-color: var(--discord-red); }
+.priority-medium { border-left-color: var(--discord-yellow); }
+.priority-low { border-left-color: var(--discord-green); }
+
+.todo-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 12px;
+}
+
+.todo-header h3 {
+  flex-grow: 1;
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--text-color);
+}
+
+.todo-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.todo-details {
+  padding-left: 33px;
+  color: var(--discord-channel);
+}
+
+.due-date {
+  margin-bottom: 8px;
+  font-size: 0.9em;
+  color: var(--discord-channel);
+}
+
+.todo-details p {
+  color: var(--text-color);
+  word-break: break-word;
+}
+
+/* Form Styles */
+.add-task-section {
+  background-color: var(--discord-dark);
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form-row {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.form-row.main-inputs {
+  align-items: center;
+}
+
+.form-row:last-child {
+  margin-bottom: 0;
+}
+
+#todo-title {
+  flex: 2;
+  min-width: 200px;
+}
+
+#todo-due-date {
+  flex: 1;
+  min-width: 180px;
+}
+
+#todo-priority {
+  width: 140px;
+}
+
+#todo-description {
+  width: 100%;
+  height: 80px;
+  resize: vertical;
+  min-height: 80px;
+}
+
+#todo-form input,
+#todo-form select,
+#todo-form textarea {
+  background-color: var(--discord-darker);
+  border: 1px solid var(--discord-border);
+  color: var(--text-color);
+  padding: 12px;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  transition: border-color 0.2s;
+}
+
+#todo-form input:focus,
+#todo-form select:focus,
+#todo-form textarea:focus {
+  border-color: var(--discord-blue);
+  outline: none;
+}
+
+#todo-form button {
+  background-color: var(--discord-green);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.95rem;
+  white-space: nowrap;
+}
+
+#todo-form button:hover {
+  background-color: #2d7d44;
+  transform: translateY(-1px);
+}
+
+#todo-form button i {
+  font-size: 0.9em;
+}
+
+/* Placeholder styling */
+#todo-form ::placeholder {
+  color: var(--discord-channel);
+  opacity: 0.8;
+}
+
+/* Select styling */
+#todo-form select {
+  cursor: pointer;
+}
+
+#todo-form select option {
+  background-color: var(--discord-darker);
+  color: var(--text-color);
+}
+
+/* Update Delete Button Styles */
+.delete-btn {
+  background-color: rgba(237, 66, 69, 0.1); /* Light red background */
+  border: none;
+  color: var(--discord-red);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  min-width: 24px;
+  min-height: 24px;
+  font-size: 14px;
+  opacity: 1;
+}
+
+.todo-card:hover .delete-btn,
+.project:hover .delete-btn {
+  opacity: 1;
+}
+
+.delete-btn:hover {
+  background-color: var(--discord-red);
+  color: white;
+  transform: scale(1.1);
+}
+
+/* Specific styling for project delete button */
+.project-delete-btn {
+  font-size: 12px;
+  padding: 3px;
+}
+
+/* Specific styling for todo delete button */
+.todo-delete-btn {
+  font-size: 14px;
+  padding: 4px;
+}
+
+/* Make sure icons are visible */
+.delete-btn i {
+  font-size: 1em;
+  pointer-events: none;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 40px;
+  color: var(--discord-channel);
+}
+
+.empty-state i {
+  color: var(--primary-color);
+  margin-bottom: 1rem;
+}
+
+.empty-state p {
+  font-size: 1.1em;
+  margin-top: 1rem;
+}
+
+/* Header Styles */
+.app-header {
+  background-color: var(--discord-darkest);
+  color: white;
+  padding: 1rem 2rem;
+  grid-column: 1 / -1;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.branding {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.branding h1 {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.social-links {
+  display: flex;
+  gap: 1rem;
+}
+
+.social-links a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: opacity 0.2s;
+}
+
+.social-links a:hover {
+  opacity: 0.8;
+}
+
+/* Footer Styles */
+.app-footer {
+  grid-column: 1 / -1;
+  background-color: var(--discord-darkest);
+  border-top: 1px solid var(--border-color);
+  padding: 1rem;
+  color: var(--discord-channel);
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-divider {
+  color: var(--border-color);
+  font-size: 0.8rem;
+}
+
+.footer-social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--discord-channel);
+  text-decoration: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 2rem;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.footer-social a:hover {
+  background-color: var(--discord-hover);
+  color: var(--text-color);
+}
+
+.footer-social i {
+  font-size: 1.1rem;
+}
+
+/* Twitter-specific styling */
+.footer-social a:hover i.fa-x-twitter {
+  color: var(--discord-blue);
+}
+
+/* GitHub-specific styling */
+.footer-social a:hover i.fa-github {
+  color: var(--text-color);
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--discord-darkest);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--discord-border);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--discord-channel);
+}
+
+/* Input placeholder color */
+::placeholder {
+  color: var(--discord-channel);
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--discord-green);
+  cursor: pointer;
+}
+
+/* Priority colors */
+.priority-high { border-left-color: var(--discord-red); }
+.priority-medium { border-left-color: var(--discord-yellow); }
+.priority-low { border-left-color: var(--discord-green); }
+
+/* Update tasks grid for desktop */
+.tasks-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 20px;
+}
+
+/* Drag and Drop Styles */
+.todo-card.dragging {
+  opacity: 0.5;
+  cursor: grabbing;
+}
+
+.todo-card.drag-over {
+  border-top: 2px solid var(--primary-color);
+}
+
+/* Update sidebar styles */
+#projects-sidebar {
+  padding-top: 20px;
+}
+
+#new-project-btn {
+  width: 100%;
+  margin-top: 15px;
+  padding: 10px;
+}
+
+/* Remove all @media queries for mobile */ 
